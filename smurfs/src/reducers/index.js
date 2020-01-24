@@ -31,9 +31,11 @@ export const reducer = (state = initialState, action) => {
                 addLoading: true,
             }
         case "ADDING_SMURF_SUCCESS":
+            // debugger;
             return {
                 ...state,
                 addLoading: false,
+                smurfs: action.payload
             }
         default:
             return state;

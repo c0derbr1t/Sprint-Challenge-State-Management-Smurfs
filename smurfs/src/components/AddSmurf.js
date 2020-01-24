@@ -5,12 +5,11 @@ import { addSmurf } from '../actions';
 
 const AddSmurf = props => {
     const [newName, setNewName] = useState('');
-    const [newAge, setNewAge] = useState('');
+    const [newAge, setNewAge] = useState();
     const [newHeight, setNewHeight] = useState('');
 
     const handleNameChanges = e => {
-        setNewName(e.target.value
-        )
+        setNewName(e.target.value)
     }
 
     const handleAgeChanges = e => {
@@ -23,12 +22,15 @@ const AddSmurf = props => {
 
     const newData = {
         name: newName,
-        age: newAge,
-        height: newHeight,
-        id: Date.now()
+        age: Number(newAge),
+        height: newHeight
     }
 
     console.log(newData);
+    const handleAdd = e => {
+        e.preventDefault();
+        props.addSmurf(newData);
+    }
 
     return (
         <div>
@@ -55,7 +57,7 @@ const AddSmurf = props => {
                         name='newHeight'
                         onChange={handleHeightChanges}
                     />
-                    <button type="submit" onClick={() => props.addSmurf(newData)}>Add Smurf</button>
+                    <button type="submit" onClick={handleAdd}>Add Smurf</button>
                 </form>
         </div>
     )
